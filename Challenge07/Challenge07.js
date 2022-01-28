@@ -311,10 +311,11 @@ let data = {
 
 const classesAvg = (data) => {                           
     
-    data.grades.forEach(element => {                //looping inside grades array 
-        for (let classData in element.classes) {    //looping inside classes 
+    data.grades.forEach(element => {                    //looping inside grades array 
+        for(let i=0 ; i<element.classes.length;i++)  {            
+        //for (let classData in element.classes) {    //looping inside classes 
+            let classData = element.classes[i];
             let sum = 0;
-
             classData.classScores.forEach(score => {    //looping inside scores 
                 sum += score;
             });
