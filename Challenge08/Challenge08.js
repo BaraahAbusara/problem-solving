@@ -108,12 +108,13 @@ const courses = [
 const getInfo = (arr) => {                  //still didn't get the idea of how to access this type of data 
     let coursesName = [];
     let studentsName = [];
+    for(let i=0; i<arr.length;i++)
+    {
+        coursesName.push(arr[i].course);
+        for(let j=0;j<arr[i].Students.length;j++)
+        studentsName.push(arr[i].Students[j]);
+    }
 
-  
-        coursesName.push(courses.course[0]);
-        studentsName.push(courses.Students[0]);
-    
-   // write your code here
 
     return { coursesName, studentsName };
 };
@@ -137,7 +138,24 @@ const getInfo = (arr) => {                  //still didn't get the idea of how t
 //  ------------------------------------------------------------------------------------------------------
 
 const getStudents = (arr) => {
-    // write your code here
+    let ansArray=[]; 
+
+    for(let a=0; a<arr.length;a++)
+    {
+        for(let i=0; i<courses.length;i++)
+    {
+        for(let j=0;j<courses[i].Students.length;j++)
+        {
+            if(courses[i].Students[j]==arr[a])
+            {
+                let obj = {Student:arr[a],course:courses[i].course};
+                ansArray.push(obj); 
+            }
+        }
+        
+    }
+    }
+    return ansArray;
 
 };
 
