@@ -116,6 +116,17 @@ const getInfo = (arr) => {                  //still didn't get the idea of how t
     }
 
 
+    for(let element of arr)
+    {
+        coursesName.push(element.course);
+
+        studentsName=element.Students.values(courses);
+    }
+       
+    
+   // write your code here
+
+
     return { coursesName, studentsName };
 };
 

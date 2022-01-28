@@ -18,22 +18,12 @@
 
 // ------------------------
 
-// let upperedName = (name)=>{
-//     let firstChar = name.toUpperCase();
-//     firstChar = firstChar.shift();
-
-//     name=name.toLowerCase(); 
-//     name.shift(); 
-
-//     return `${firstChar}${name}`; 
-
-// }
 const objLat = (obj) => {
 
     let firstNameFirstChar = obj.firstName[0];
     let lastNameFirstChar = obj.lastName[0];
 
-    let firstUppered = firstNameFirstChar.toUpperCase() + obj.firstName.substring(1); 
+    let firstUppered = firstNameFirstChar.toUpperCase() + obj.firstName.substring(1);
     let lastUppered = lastNameFirstChar.toUpperCase() + obj.lastName.substring(1);
 
     let fullUppered = firstUppered + " " + lastUppered;
@@ -121,12 +111,14 @@ const cvFormatter = (arr) => {          // I can't find the problem
 
     let ans = [];
     let isFullName;
-    for (let i = 0; i < arr.length; i++) {
+    for (const property in arr) {
 
-        if (this.yearsOfExperience > 1) { 
+        if (arr[property].yearsOfExperience > 1) {
             //push fullName and tech 
-            isFullName = fullName(arr[i].firstName, arr[i].lastName);
-            ans.push([isFullName, arr[i].tech]);
+            isFullName = fullName(arr[property].firstName, arr[property].lastName);
+            let obj = { fullName: isFullName, tech: arr[property].tech };
+
+            ans.push(obj);
         }
     }
     return ans;
@@ -153,35 +145,46 @@ const cvFormatter = (arr) => {          // I can't find the problem
 
 // ------------------------
 const applicationsStatics = (arr) => {
-    for (let i = 0; i < arr.length; i++) {
-        //rejected applications 
-        if (this.yearsOfExperience < 1 || (this.firstName == null && this.lastName == null)) 
-            this.rejectedApplicants++;
-        else { 
-            //not rejected applications    
-            this.totalApplicants++;                  
-            switch (this.tech) {
-                case "Java":
-                    this.java_Devs++;
-                    break;
 
-                case ".Net":
-                    this.dotNet_Devs++
-                    break;
+    let result = {
+        python_Devs: 0,
+        javaScript_Devs: 0,
+        dotNet_Devs: 0,
+        java_Devs: 0,
+        totalApplicants: 0,
+        rejectedApplicants: 0,
+    };
 
-                case "JS":
-                    this.javaScript_Devs++;
-                    break;
+    //for (const property in arr) {
+    arr.map(function (item, idx) {
 
-                case "Python":
-                    this.python_Devs++;
-                    break;
+        if (item.yearsOfExperience <= 1 || (item.firstName == null && item.lastName == null))
+            result.rejectedApplicants += 1;
 
-            }
+        result.totalApplicants += 1;
+
+        switch (item.tech) {
+            case "Java":
+                result.java_Devs += 1;
+                break;
+
+            case ".Net":
+                result.dotNet_Devs += 1;
+                break;
+
+            case "JS":
+                result.javaScript_Devs += 1;
+                break;
+
+            case "Python":
+                result.python_Devs += 1;
+                break;
+
         }
     }
-    return result ;  // i don't know how to return the required data 
-    
+    )
+    return result;  // i don't know how to return the required data 
+
 
 };
 
@@ -307,13 +310,23 @@ let data = {
 //  2- You need to round the average to the nearest lower number 
 
 const classesAvg = (data) => {
-    let sum = 0;
-    for (let i = 0; i < this.grades[classes.classScores].length; i++) { //it is not entering inside classes 
-        sum += this.grades.classes.classScores[i];
-    }
 
-    this.avg = sum / this.grades.classes.classScores.length;
-    return this.avg;
-};
+
+    for (let g = 0; g < data.grades.length; g++){
+       // let newClass = data.grades[g].classes;
+    for (let j = 0; j < data.grades[g].classes.length; j++){
+       let sumData = 0;
+    for (let i = 0; i < data.grades[g].classes[j].classScores.length; i++) {
+        let classData = data.grades[g].classes[j].classScores[i];
+        sumData += classData;
+    }
+    data.grades[g].classes[j].avg = Math.floor(sumData / data.grades[g].classes[j].classScores.length);
+    }}
+    return data ; 
+}
+        
+
+
+
 
 module.exports = { objLat, cvFormatter, applicationsStatics, classesAvg };

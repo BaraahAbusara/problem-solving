@@ -8,5 +8,9 @@ This repository is going to be for problem solving exercises given by ASAC team.
 
 ## Exercise02 - Solved by Javascript :
 
+
 ## Exercise03 - Solved by Javascript :
-1. Using for..in , for..of and Object.entries. 
+Using for..in , for..of and Object.entries. 
+
+## Exercise04 - Solved by Javascript :
+Editing on data inside Arrays and Objects. 
