@@ -309,22 +309,24 @@ let data = {
 //  1- This is not the exact data you will be getting every time and the solution should be dynamic
 //  2- You need to round the average to the nearest lower number 
 
-const classesAvg = (data) => {                           
-    
-    data.grades.forEach(element => {                    //looping inside grades array 
-        for(let i=0 ; i<element.classes.length;i++)  {            
-        //for (let classData in element.classes) {    //looping inside classes 
-            let classData = element.classes[i];
-            let sum = 0;
-            classData.classScores.forEach(score => {    //looping inside scores 
-                sum += score;
-            });
-            classData.avg = Math.floor(sum / classData.classScores.length);
+const classesAvg = (data) => {
 
-        }
+
+    for (let g = 0; g < data.grades.length; g++){
+       // let newClass = data.grades[g].classes;
+    for (let j = 0; j < data.grades[g].classes.length; j++){
+       let sumData = 0;
+    for (let i = 0; i < data.grades[g].classes[j].classScores.length; i++) {
+        let classData = data.grades[g].classes[j].classScores[i];
+        sumData += classData;
+    }
+    data.grades[g].classes[j].avg = Math.floor(sumData / data.grades[g].classes[j].classScores.length);
+    }}
+    return data ; 
+}
         
-    });
 
-};
+
+
 
 module.exports = { objLat, cvFormatter, applicationsStatics, classesAvg };
