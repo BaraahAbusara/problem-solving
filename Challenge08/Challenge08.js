@@ -108,10 +108,13 @@ const courses = [
 const getInfo = (arr) => {                  //still didn't get the idea of how to access this type of data 
     let coursesName = [];
     let studentsName = [];
+    for(let element of arr)
+    {
+        coursesName.push(element.course);
 
-  
-        coursesName.push(courses.course[0]);
-        studentsName.push(courses.Students[0]);
+        studentsName=element.Students.values(courses);
+    }
+       
     
    // write your code here
 
